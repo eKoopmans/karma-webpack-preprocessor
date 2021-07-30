@@ -21,7 +21,9 @@
   },
   "homepage": "https://github.com/sterjakovigor/karma-webpack-preprocessor#readme",
   "dependencies": {
-    "memory-fs": "^0.4.1",
-    "webpack": "^2.2.1"
+    "memory-fs": "^0.4.1"
+  },
+  "peerDependencies": {
+    "webpack": ">= 2.2.1 < 6"
   }
 }
