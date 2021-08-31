@@ -44,9 +44,7 @@ module.exports = function(config) {
 
 ### Custom preprocessors
 
-You can use [custom preprocessors](http://karma-runner.github.io/6.3/config/preprocessors.html#configured-preprocessors) to create variants of the Webpack preprocessor, if you need different configurations for different files.
-
-This example uses the standard Webpack config file to build our library, then uses a custom config to build our tests:
+You can use [custom preprocessors](http://karma-runner.github.io/6.3/config/preprocessors.html#configured-preprocessors) to create variants of the Webpack preprocessor if you need different configurations for different files. This example uses our standard Webpack config file to build our library and a custom config to build our tests:
 
 ```js
 // karma.conf.js
@@ -67,7 +65,7 @@ module.exports = function(config) {
     },
 
     customPreprocessors: {
-			// Clones the 'webpack' preprocessor, overwriting any specified options
+      // Clones the 'webpack' preprocessor, overwriting any specified options
       webpackTests: {
         base: 'webpack',
         options: {
