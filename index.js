@@ -36,9 +36,12 @@ const compileWebpack = (config, file, done) => {
 const createWebpackPreprocessor = (args, config, logger) => {
   const log = logger.create('preprocessor.webpack')
 
+  const customPreprocessorConfig = args.options
+  const mergedConfig = { ...config, ...customPreprocessorConfig }
+
   return (content, file, done) => {
     log.debug('Processing "%s".', file.path)
-    const webpackConfig = getWebpackConfig(config)
+    const webpackConfig = getWebpackConfig(mergedConfig)
     compileWebpack(
       webpackConfig,
       file.path,
