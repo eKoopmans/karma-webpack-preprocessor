@@ -4,7 +4,7 @@ const webpack = require('webpack')
 
 const getWebpackConfig = (config) => {
   const { configPath, ...preprocessorConfig } = config
-  const webpackFileConfig = require(path.resolve(configPath))
+  const webpackFileConfig = configPath ? require(path.resolve(configPath)) : undefined
   return { ...webpackFileConfig, ...preprocessorConfig }
 }
 
