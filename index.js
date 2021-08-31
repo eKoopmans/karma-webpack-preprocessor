@@ -2,10 +2,10 @@ const path = require('path')
 const MemoryFS = require('memory-fs')
 const webpack = require('webpack')
 
-const getWebpackConfig = (file) => {
-  const webpackConfigPath = path.resolve(file)
-  const webpackConfig = require(webpackConfigPath)
-  return Object.assign({}, webpackConfig)
+const getWebpackConfig = (config) => {
+  const { configPath, ...preprocessorConfig } = config
+  const webpackFileConfig = require(path.resolve(configPath))
+  return { ...webpackFileConfig, ...preprocessorConfig }
 }
 
 // https://webpack.js.org/api/node/#compiling-to-memory
@@ -34,12 +34,11 @@ const compileWebpack = (config, file, done) => {
 }
 
 const createWebpackPreprocessor = (args, config, logger) => {
-
   const log = logger.create('preprocessor.webpack')
 
   return (content, file, done) => {
     log.debug('Processing "%s".', file.path)
-    const webpackConfig = getWebpackConfig(config.configPath)
+    const webpackConfig = getWebpackConfig(config)
     compileWebpack(
       webpackConfig,
       file.path,
