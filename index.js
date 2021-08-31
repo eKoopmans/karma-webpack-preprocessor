@@ -10,13 +10,16 @@ const getWebpackConfig = (file) => {
 
 // https://webpack.js.org/api/node/#compiling-to-memory
 const compileWebpack = (config, file, done) => {
-
   const parsedPath = path.parse(file)
 
-  config.entry = file
-  config.output = {
-    filename: parsedPath.base,
-    path: parsedPath.dir,
+  config = {
+    ...config,
+    entry: file,
+    output: {
+      ...config.output,
+      filename: parsedPath.base,
+      path: parsedPath.dir,
+    },
   }
 
   const fs = new MemoryFS()
